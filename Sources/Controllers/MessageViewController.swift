@@ -49,28 +49,7 @@ public final class MessageViewController: UIViewController {
 
   /// Animates blur and border view.
   func animateLoading() {
-    animate(blurStyle: .light)
     animate(borderViewAngle: CGFloat(Double.pi/2))
-  }
-
-  /**
-   Animates blur to make pulsating effect.
-
-   - Parameter style: The current blur style.
-   */
-  private func animate(blurStyle: UIBlurEffect.Style) {
-    guard status.state == .processing else { return }
-
-    UIView.animate(
-      withDuration: 2.0,
-      delay: 0.5,
-      options: [.beginFromCurrentState],
-      animations: ({ [weak self] in
-        self?.blurView.effect = UIBlurEffect(style: blurStyle)
-      }),
-      completion: ({ [weak self] _ in
-        self?.animate(blurStyle: blurStyle == .light ? .extraLight : .light)
-      }))
   }
 
   /**
